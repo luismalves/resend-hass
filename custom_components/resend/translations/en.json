@@ -1,0 +1,102 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Resend",
+        "data": {
+          "api_key": "API key",
+          "from_address": "Sender address",
+          "recipient": "Default recipients"
+        },
+        "data_description": {
+          "api_key": "Create one at resend.com/api-keys. Sending access is enough.",
+          "from_address": "Must use a domain you verified in Resend. A display name works too, e.g. Home Assistant <ha@example.com>.",
+          "recipient": "Where the notify entity sends to. The send_email action can override this."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not reach the Resend API.",
+      "invalid_auth": "Resend rejected that API key."
+    },
+    "abort": {
+      "already_configured": "That sender address is already set up."
+    }
+  },
+  "exceptions": {
+    "no_account": {
+      "message": "No Resend account is set up. Add the Resend integration first."
+    },
+    "unknown_account": {
+      "message": "Config entry {entry_id} is not a loaded Resend account."
+    }
+  },
+  "services": {
+    "send_email": {
+      "name": "Send email",
+      "description": "Sends an email through Resend, optionally rendering a Resend template.",
+      "fields": {
+        "config_entry_id": {
+          "name": "Account",
+          "description": "Which Resend account to send from. Defaults to the only one set up."
+        },
+        "to": {
+          "name": "To",
+          "description": "Recipient addresses. Max 50."
+        },
+        "subject": {
+          "name": "Subject",
+          "description": "Subject line. Optional when the template defines one; overrides it when set."
+        },
+        "template_id": {
+          "name": "Template ID",
+          "description": "ID or alias of a published Resend template. Cannot be combined with HTML or text."
+        },
+        "template_variables": {
+          "name": "Template variables",
+          "description": "Values substituted into the template. Keys allow letters, numbers and underscores. FIRST_NAME, LAST_NAME, EMAIL and UNSUBSCRIBE_URL are reserved by Resend."
+        },
+        "html": {
+          "name": "HTML body",
+          "description": "HTML body, for when you are not using a template."
+        },
+        "text": {
+          "name": "Text body",
+          "description": "Plain-text body. Derived from the HTML when omitted."
+        },
+        "from_address": {
+          "name": "From",
+          "description": "Overrides the sender configured on the account."
+        },
+        "cc": {
+          "name": "CC",
+          "description": "Carbon-copy recipients."
+        },
+        "bcc": {
+          "name": "BCC",
+          "description": "Blind carbon-copy recipients."
+        },
+        "reply_to": {
+          "name": "Reply to",
+          "description": "Where replies should go."
+        },
+        "scheduled_at": {
+          "name": "Scheduled at",
+          "description": "Delay delivery. Accepts natural language such as 'in 1 hour' or an ISO 8601 timestamp."
+        },
+        "headers": {
+          "name": "Headers",
+          "description": "Custom email headers."
+        },
+        "tags": {
+          "name": "Tags",
+          "description": "List of name/value pairs recorded against the send in Resend."
+        },
+        "attachments": {
+          "name": "Attachments",
+          "description": "List of attachments. Each needs a filename plus either base64 content or a publicly reachable path URL. 40 MB total."
+        }
+      }
+    }
+  }
+}

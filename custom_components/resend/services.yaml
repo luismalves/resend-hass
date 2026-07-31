@@ -1,0 +1,68 @@
+send_email:
+  fields:
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: resend
+    to:
+      required: true
+      example: someone@example.com
+      selector:
+        text:
+          type: email
+          multiple: true
+    subject:
+      example: Garage door left open
+      selector:
+        text:
+    template_id:
+      example: garage-alert
+      selector:
+        text:
+    template_variables:
+      example: '{"DOOR": "Garage", "MINUTES": "20"}'
+      selector:
+        object:
+    html:
+      selector:
+        text:
+          multiline: true
+    text:
+      selector:
+        text:
+          multiline: true
+    from_address:
+      example: Home Assistant <ha@example.com>
+      selector:
+        text:
+    cc:
+      selector:
+        text:
+          type: email
+          multiple: true
+    bcc:
+      selector:
+        text:
+          type: email
+          multiple: true
+    reply_to:
+      selector:
+        text:
+          type: email
+          multiple: true
+    scheduled_at:
+      example: in 1 hour
+      selector:
+        text:
+    headers:
+      example: '{"X-Entity-Ref-ID": "abc123"}'
+      selector:
+        object:
+    tags:
+      example: '[{"name": "category", "value": "alert"}]'
+      selector:
+        object:
+    attachments:
+      example: '[{"filename": "snapshot.jpg", "path": "https://example.com/snapshot.jpg"}]'
+      selector:
+        object:
