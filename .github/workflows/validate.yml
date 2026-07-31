@@ -18,18 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: hacs/action@main
-        env:
-          # The default token is what lets the action read a private repo.
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           category: integration
-          # ponytail: these three cannot pass while the repo is private.
-          # brands needs a listing in home-assistant/brands; hacsjson and
-          # integration_manifest read file contents through an API path that
-          # 404s on private repos, so both see None. The repo-metadata checks
-          # (topics, description, license, issues) still run, and hassfest
-          # validates manifest.json anyway. Delete this line if it goes public.
-          ignore: brands hacsjson integration_manifest
 
   tests:
     runs-on: ubuntu-latest
