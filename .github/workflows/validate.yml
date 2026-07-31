@@ -10,28 +10,31 @@ jobs:
   hassfest:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: home-assistant/actions/hassfest@master
 
   hacs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: hacs/action@main
         env:
           # The default token is what lets the action read a private repo.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           category: integration
-          # ponytail: brand assets only matter for the public HACS default
-          # store, which a private repo can never join. Drop the ignore if
-          # this repo goes public and gets submitted.
-          ignore: brands
+          # ponytail: these three cannot pass while the repo is private.
+          # brands needs a listing in home-assistant/brands; hacsjson and
+          # integration_manifest read file contents through an API path that
+          # 404s on private repos, so both see None. The repo-metadata checks
+          # (topics, description, license, issues) still run, and hassfest
+          # validates manifest.json anyway. Delete this line if it goes public.
+          ignore: brands hacsjson integration_manifest
 
   tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
