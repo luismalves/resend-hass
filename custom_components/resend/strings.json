@@ -10,7 +10,7 @@
         },
         "data_description": {
           "api_key": "Create one at resend.com/api-keys. Sending access is enough.",
-          "from_address": "Must use a domain you verified in Resend. A display name works too, e.g. Home Assistant <ha@example.com>.",
+          "from_address": "Must be on a domain you have verified in Resend. A display name may be included.",
           "recipient": "Where the notify entity sends to. The send_email action can override this."
         }
       }

@@ -32,7 +32,7 @@ send_email:
         text:
           multiline: true
     from_address:
-      example: Home Assistant <ha@example.com>
+      example: "Home Assistant <ha@example.com>"
       selector:
         text:
     cc:

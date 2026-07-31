@@ -18,8 +18,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: hacs/action@main
+        env:
+          # The default token is what lets the action read a private repo.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           category: integration
+          # ponytail: brand assets only matter for the public HACS default
+          # store, which a private repo can never join. Drop the ignore if
+          # this repo goes public and gets submitted.
+          ignore: brands
 
   tests:
     runs-on: ubuntu-latest
