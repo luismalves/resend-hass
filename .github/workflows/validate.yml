@@ -20,6 +20,12 @@ jobs:
       - uses: hacs/action@main
         with:
           category: integration
+          # ponytail: only blocks submission to the HACS default store, not
+          # installing this as a custom repository. Two ways to clear it:
+          # drop icon.png + logo.png into custom_components/resend/brand/, or
+          # add "resend" to github.com/home-assistant/brands. Both need a real
+          # logo, so this stays ignored until you pick one.
+          ignore: brands
 
   tests:
     runs-on: ubuntu-latest
